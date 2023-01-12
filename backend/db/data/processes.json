@@ -1,0 +1,18 @@
+﻿[
+    {
+        "process_id": "PROC01",
+        "process_name": "Obróbka wstępna"
+    },
+    {
+        "process_id": "PROC02",
+        "process_name": "Obróbka zgrubna"
+    },
+    {
+        "process_id": "PROC03",
+        "process_name": "Obróbka kształtująca"
+    },
+    {
+        "process_id": "PROC04",
+        "process_name": "Obróbka wykończeniowa"
+    }
+]

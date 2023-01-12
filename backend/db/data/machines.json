@@ -1,0 +1,22 @@
+﻿[
+    {
+        "machine_id": "M01",
+        "machine_type": "BEE-250"
+    },
+    {
+        "machine_id": "M02",
+        "machine_type": "TAE-32N"
+    },
+    {
+        "machine_id": "M03",
+        "machine_type": "BTC 50"
+    },
+    {
+        "machine_id": "M04",
+        "machine_type": "TAE-25N"
+    },
+    {
+        "machine_id": "M05",
+        "machine_type": "LSB-99"
+    }
+]
