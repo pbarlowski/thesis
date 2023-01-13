@@ -1,0 +1,1002 @@
+﻿[
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "32",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "51",
+        "time_per_unit": "4"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "52",
+        "time_per_unit": "7"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "32",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "41",
+        "time_per_unit": "7"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "47",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "38",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "39",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "60",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "15",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "32",
+        "time_per_unit": "3"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "18",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "28",
+        "time_per_unit": "16"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "25",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "25",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "38",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "25",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "21",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "51",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "47",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "55",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "28",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "46",
+        "time_per_unit": "2"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "19",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "55",
+        "time_per_unit": "13"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "18",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "37",
+        "time_per_unit": "3"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "38",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "19",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "43",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "38",
+        "time_per_unit": "13"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "25",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "54",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "42",
+        "time_per_unit": "7"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "30",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "22",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "52",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "30",
+        "time_per_unit": "11"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "40",
+        "time_per_unit": "16"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "36",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "21",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "26",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "49",
+        "time_per_unit": "16"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "31",
+        "time_per_unit": "7"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "51",
+        "time_per_unit": "3"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "38",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "41",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "16",
+        "time_per_unit": "13"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "52",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "33",
+        "time_per_unit": "1"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "43",
+        "time_per_unit": "7"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "51",
+        "time_per_unit": "4"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "18",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "15",
+        "time_per_unit": "9"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "25",
+        "time_per_unit": "4"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "34",
+        "time_per_unit": "9"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "25",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "42",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "38",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "59",
+        "time_per_unit": "13"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "52",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "42",
+        "time_per_unit": "2"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "41",
+        "time_per_unit": "13"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "59",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "35",
+        "time_per_unit": "2"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "28",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "51",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "40",
+        "time_per_unit": "16"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "52",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "35",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "17",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "41",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "57",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "25",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "19",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "24",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "56",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "49",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "59",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "44",
+        "time_per_unit": "16"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "32",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "43",
+        "time_per_unit": "2"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "36",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "28",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "18",
+        "time_per_unit": "1"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "42",
+        "time_per_unit": "16"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "54",
+        "time_per_unit": "1"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "50",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "42",
+        "time_per_unit": "1"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "57",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "53",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "29",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "26",
+        "time_per_unit": "3"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "45",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "56",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "51",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "20",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "17",
+        "time_per_unit": "1"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "56",
+        "time_per_unit": "13"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "58",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "26",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "51",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "21",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "42",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "15",
+        "time_per_unit": "3"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "22",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "27",
+        "time_per_unit": "4"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "26",
+        "time_per_unit": "9"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "48",
+        "time_per_unit": "9"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "33",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "54",
+        "time_per_unit": "1"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "44",
+        "time_per_unit": "2"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "48",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "36",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "47",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "32",
+        "time_per_unit": "2"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "30",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "24",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "32",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "47",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "48",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "30",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "60",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "38",
+        "time_per_unit": "4"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "20",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "55",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "38",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "38",
+        "time_per_unit": "11"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "34",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "55",
+        "time_per_unit": "3"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "39",
+        "time_per_unit": "16"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "57",
+        "time_per_unit": "11"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "56",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "15",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "56",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "55",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "25",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "18",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "18",
+        "time_per_unit": "11"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "58",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "27",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "20",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "37",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "34",
+        "time_per_unit": "11"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "36",
+        "time_per_unit": "3"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "54",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "53",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "26",
+        "time_per_unit": "2"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "45",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "47",
+        "time_per_unit": "7"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "48",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "57",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "29",
+        "time_per_unit": "13"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "42",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "28",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "34",
+        "time_per_unit": "13"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "33",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "57",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "44",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "27",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "28",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "59",
+        "time_per_unit": "11"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "43",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "53",
+        "time_per_unit": "17"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "50",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "53",
+        "time_per_unit": "11"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "55",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "49",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "41",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "27",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "33",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "54",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "46",
+        "time_per_unit": "11"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "44",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "17",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "43",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "21",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "59",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "18",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "47",
+        "time_per_unit": "3"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "43",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "16",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "50",
+        "time_per_unit": "7"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "53",
+        "time_per_unit": "12"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "16",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "22",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "48",
+        "time_per_unit": "13"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "54",
+        "time_per_unit": "18"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "35",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "17",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "TOZGRCNC",
+        "setup_time": "45",
+        "time_per_unit": "15"
+    },
+    {
+        "operation_symbol": "FRCZNK",
+        "setup_time": "15",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "26",
+        "time_per_unit": "5"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "41",
+        "time_per_unit": "8"
+    },
+    {
+        "operation_symbol": "FFRRWKON",
+        "setup_time": "25",
+        "time_per_unit": "6"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "21",
+        "time_per_unit": "10"
+    },
+    {
+        "operation_symbol": "PCRSPRTR",
+        "setup_time": "51",
+        "time_per_unit": "14"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "29",
+        "time_per_unit": "19"
+    },
+    {
+        "operation_symbol": "PCRSPRTS",
+        "setup_time": "59",
+        "time_per_unit": "20"
+    },
+    {
+        "operation_symbol": "SZPCSZKL",
+        "setup_time": "53",
+        "time_per_unit": "14"
+    }
+]
