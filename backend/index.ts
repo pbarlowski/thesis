@@ -1,9 +1,12 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+
 import sql from "mssql";
 
 import authRouter from "./src/routes/auth";
+import apiRouter from "./src/routes/api";
 
 import { authVerification } from "./src/middlewares/authVerification";
 
@@ -11,10 +14,10 @@ dotenv.config();
 const app = express();
 
 const config = {
-  user: "user",
-  password: "Qwer1234!",
+  user: "SA",
+  password: "<YourStrong@Passw0rd>",
   server: "127.0.0.1",
-  database: "test",
+  database: "script",
   options: {
     trustedconnection: true,
     enableArithAbort: true,
@@ -25,23 +28,15 @@ const config = {
 };
 
 // Middlewares
+app.use(cors());
+app.options("*", cors());
 app.use(cookieParser());
 app.use(express.json());
-app.use("/api", authVerification);
+// app.use("/api", authVerification);
 
 // Routes
 app.use("/auth", authRouter);
-app.get("/api", async (req: Request, res: Response) => {
-  console.log("token", res.locals.token);
-  try {
-    const result = await sql.query`SELECT * FROM testowedane`;
-    console.log("result", result.recordset);
-    res.sendStatus(200);
-  } catch (e) {
-    console.log("error", e);
-    res.sendStatus(400);
-  }
-});
+app.use("/api", apiRouter);
 
 app.listen(process.env.PORT, async () => {
   await sql.connect(config);

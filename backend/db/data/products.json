@@ -1,0 +1,22 @@
+[
+  {
+    "product_id": "P01",
+    "product_type": "Śruba"
+  },
+  {
+    "product_id": "P02",
+    "product_type": "Wałek"
+  },
+  {
+    "product_id": "P03",
+    "product_type": "Nakrętka"
+  },
+  {
+    "product_id": "P04",
+    "product_type": "Reduktor"
+  },
+  {
+    "product_id": "P05",
+    "product_type": "Zębatka"
+  }
+]

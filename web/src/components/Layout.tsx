@@ -3,7 +3,9 @@ import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import {
+  Avatar,
   Box,
+  Button,
   Divider,
   Drawer,
   List,
@@ -22,6 +24,7 @@ import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import CategoryIcon from "@mui/icons-material/Category";
+import styled from "styled-components";
 
 const linkList1 = [
   { text: "Dashboard", path: "/dashboard", icon: <HomeIcon /> },
@@ -37,11 +40,22 @@ const linkList2 = [
   { text: "Accidents", path: "/accidents", icon: <ReportProblemIcon /> },
 ];
 
+const MainContainer = styled.div`
+  display: flex;
+  height: 100vh;
+`;
+
+const OutletContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+
 const Layout = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ display: "flex", height: "100%" }}>
+    <MainContainer>
       <Drawer
         variant="permanent"
         anchor="left"
@@ -54,7 +68,16 @@ const Layout = () => {
           },
         }}
       >
-        <Toolbar />
+        <Toolbar
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Avatar>OP</Avatar>
+          <Button variant="contained">Logout</Button>
+        </Toolbar>
         <Divider />
         <List>
           {linkList1.map((item, index) => (
@@ -78,18 +101,10 @@ const Layout = () => {
           ))}
         </List>
       </Drawer>
-      <Box
-        component="main"
-        sx={{
-          alignItems: "flex-end",
-          display: "flex",
-          flex: 1,
-          bgcolor: "background.default",
-        }}
-      >
+      <OutletContainer>
         <Outlet />
-      </Box>
-    </Box>
+      </OutletContainer>
+    </MainContainer>
   );
 };
 

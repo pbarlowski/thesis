@@ -17,13 +17,19 @@ const config = {
 const dropDb = async () => {
   await sql.connect(config).catch((e) => console.log("connecting error", e));
 
+  await sql.query`drop table schedules`.catch((e) =>
+    console.log("query error", e.message)
+  );
+  await sql.query`drop table orders_reports`.catch((e) =>
+    console.log("query error", e.message)
+  );
   await sql.query`drop table orders`.catch((e) =>
     console.log("query error", e.message)
   );
   await sql.query`drop table products`.catch((e) =>
     console.log("query error", e.message)
   );
-  await sql.query`drop table schedules`.catch((e) =>
+  await sql.query`drop table operations_reports`.catch((e) =>
     console.log("query error", e.message)
   );
   await sql.query`drop table accidents`.catch((e) =>
@@ -32,13 +38,10 @@ const dropDb = async () => {
   await sql.query`drop table operations`.catch((e) =>
     console.log("query error", e.message)
   );
-  await sql.query`drop table processes`.catch((e) =>
-    console.log("query error", e.message)
-  );
-  await sql.query`drop table reports`.catch((e) =>
-    console.log("query error", e.message)
-  );
   await sql.query`drop table machines`.catch((e) =>
+    console.log("query error", e.message)
+  );
+  await sql.query`drop table processes`.catch((e) =>
     console.log("query error", e.message)
   );
 

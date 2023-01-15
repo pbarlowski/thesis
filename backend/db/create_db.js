@@ -4,6 +4,7 @@ const machines = require("./data/machines.json");
 const processes = require("./data/processes.json");
 const orders = require("./data/orders.json");
 const operations = require("./data/operations.json");
+const products = require("./data/products.json");
 
 const config = {
   user: "SA",
@@ -23,6 +24,12 @@ const configDb = async () => {
   await sql.connect(config).catch((e) => console.log("connecting error", e));
 
   try {
+    // Products table
+    await sql.query`create table products(
+        id_products UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        product_id varchar(255) NOT NULL,
+        product_type varchar(255) NOT NULL)`;
+
     // Process table
     await sql.query`create table processes(
         id_processes UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
@@ -35,9 +42,17 @@ const configDb = async () => {
         machine_id varchar(255) NOT NULL,
         machine_type varchar(255) NOT NULL)`;
 
+    // Orders table
+    await sql.query`create table orders(
+        id_orders UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        fk_products UNIQUEIDENTIFIER FOREIGN KEY REFERENCES products(id_products),
+        order_amount int NOT NULL,
+        status varchar(255) DEFAULT 'progress')`;
+
     // Products table
-    await sql.query`create table products(
-        id_products UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+    await sql.query`create table orders_reports(
+        id_orders_reports UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        fk_orders UNIQUEIDENTIFIER  NOT NULL FOREIGN KEY REFERENCES orders(id_orders),
         product_valid int NOT NULL,
         product_eligible int NOT NULL)`;
 
@@ -54,39 +69,45 @@ const configDb = async () => {
     await sql.query`create table schedules(
         id_schedules UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
         fk_operations UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES operations(id_operations),
+        fk_orders UNIQUEIDENTIFIER FOREIGN KEY REFERENCES orders(id_orders),
         planed_start DATETIME NOT NULL,
         planed_end DATETIME NOT NULL,
-        processing_time int NOT NULL)`;
-
-    // Orders table
-    await sql.query`create table orders(
-        id_orders UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-        fk_products UNIQUEIDENTIFIER FOREIGN KEY REFERENCES products(id_products),
-        fk_schedules UNIQUEIDENTIFIER FOREIGN KEY REFERENCES schedules(id_schedules),
-        order_amount int NOT NULL )`;
+        processing_time int NOT NULL,
+        status varchar(255) DEFAULT 'progress')`;
 
     // Accidents table
     await sql.query`create table accidents(
         id_accidents UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-        fk_machines UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES machines(id_machines),
+        fk_operations UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES operations(id_operations),
         accident_type varchar(255) NOT NULL,
         accidents_start DATETIME NOT NULL,
         accidents_end DATETIME NOT NULL)`;
 
     // Report table
-    await sql.query`create table reports(
-        id_reports UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+    await sql.query`create table operations_reports(
+        id_operations_reports UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
         fk_operations UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES operations(id_operations),
         real_start DATETIME NOT NULL,
         real_end DATETIME NOT NULL)`;
 
     console.log("tables created");
+
     // Insert data
+    const promisesProducts = [];
     const promisesMachines = [];
     const promisesProcesses = [];
     const promisesOrders = [];
     const promisesOperations = [];
     const promisesSchedules = [];
+
+    // Products data
+    products.forEach((product) => {
+      const promise = sql.query`insert into products ( product_id, product_type) values (${product.product_id}, ${product.product_type})`;
+      promisesProducts.push(promise);
+    });
+
+    await Promise.all(promisesProducts);
+    console.log("products done");
 
     // Machines data
     machines.forEach((machine) => {
@@ -107,8 +128,14 @@ const configDb = async () => {
     console.log("processes done");
 
     // Orders data
+    const productsResult = await sql.query`select * from products`;
+
     orders.forEach((order) => {
-      const promise = sql.query`insert into orders ( order_amount) values (${order.order_amount})`;
+      const promise = sql.query`insert into orders (fk_products, order_amount) values (${
+        productsResult.recordset[
+          Math.floor(Math.random() * productsResult.rowsAffected[0])
+        ]["id_products"]
+      },${order.order_amount})`;
       promisesOrders.push(promise);
     });
 
@@ -116,8 +143,6 @@ const configDb = async () => {
     console.log("orders done");
 
     // Operations data
-
-    const operationsOrders = [];
     const machinesResult = await sql.query`select * from machines`;
     const processesResult = await sql.query`select * from processes`;
 
@@ -161,6 +186,7 @@ const configDb = async () => {
       const planed_end = time;
       schedulesData.push({
         fk_operations: operationsResult.recordset[index].id_operations,
+        fk_orders: ordersResult.recordset[index].id_orders,
         planed_start,
         planed_end,
         processing_time,
@@ -168,7 +194,7 @@ const configDb = async () => {
     }
 
     schedulesData.forEach((schedule) => {
-      const promise = sql.query`insert into schedules ( fk_operations, planed_start, planed_end, processing_time) values (${schedule.fk_operations}, ${schedule.planed_start},
+      const promise = sql.query`insert into schedules ( fk_operations,fk_orders, planed_start, planed_end, processing_time) values (${schedule.fk_operations},${schedule.fk_orders}, ${schedule.planed_start},
       ${schedule.planed_end},${schedule.processing_time})`;
       promisesSchedules.push(promise);
     });
@@ -176,22 +202,6 @@ const configDb = async () => {
     await Promise.all(promisesSchedules);
 
     console.log("schedules done");
-
-    const schedulesResults = await sql.query`select * from schedules`;
-
-    const ordersData = schedulesResults.recordset.map((schedule, index) => ({
-      id_orders: ordersResult.recordset[index]["id_orders"],
-      fk_schedules: schedule.id_schedules,
-    }));
-
-    const ordersDataPromises = [];
-
-    ordersData.forEach((order) => {
-      const promise = sql.query`update orders set fk_schedules=${order.fk_schedules} where id_orders=${order.id_orders}`;
-      ordersDataPromises.push(promise);
-    });
-
-    await Promise.all(ordersDataPromises);
 
     console.log("done");
   } catch (e) {
