@@ -32,7 +32,7 @@ const dropDb = async () => {
   await sql.query`drop table operations_reports`.catch((e) =>
     console.log("query error", e.message)
   );
-  await sql.query`drop table accidents`.catch((e) =>
+  await sql.query`drop table accidents_reports`.catch((e) =>
     console.log("query error", e.message)
   );
   await sql.query`drop table operations`.catch((e) =>

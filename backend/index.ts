@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -30,6 +31,7 @@ const config = {
 // Middlewares
 app.use(cors());
 app.options("*", cors());
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.json());
 // app.use("/api", authVerification);

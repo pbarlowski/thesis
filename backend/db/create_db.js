@@ -26,67 +26,67 @@ const configDb = async () => {
   try {
     // Products table
     await sql.query`create table products(
-        id_products UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        id_products varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
         product_id varchar(255) NOT NULL,
         product_type varchar(255) NOT NULL)`;
 
     // Process table
     await sql.query`create table processes(
-        id_processes UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        id_processes varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
         process_id varchar(255) NOT NULL,
         process_name varchar(255) NOT NULL)`;
 
     // Machines table
     await sql.query`create table machines(
-        id_machines UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        id_machines varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
         machine_id varchar(255) NOT NULL,
         machine_type varchar(255) NOT NULL)`;
 
     // Orders table
     await sql.query`create table orders(
-        id_orders UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-        fk_products UNIQUEIDENTIFIER FOREIGN KEY REFERENCES products(id_products),
+        id_orders varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        fk_products varchar(255) FOREIGN KEY REFERENCES products(id_products),
         order_amount int NOT NULL,
         status varchar(255) DEFAULT 'progress')`;
 
     // Products table
     await sql.query`create table orders_reports(
-        id_orders_reports UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-        fk_orders UNIQUEIDENTIFIER  NOT NULL FOREIGN KEY REFERENCES orders(id_orders),
-        product_valid int NOT NULL,
-        product_eligible int NOT NULL)`;
+        id_orders_reports varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        fk_orders varchar(255)  NOT NULL FOREIGN KEY REFERENCES orders(id_orders),
+        products_valid int NOT NULL,
+        products_eligible int NOT NULL)`;
 
     // Operation table
     await sql.query`create table operations(
-        id_operations UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-        fk_machines UNIQUEIDENTIFIER  NOT NULL FOREIGN KEY REFERENCES machines(id_machines),
-        fk_processes UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES processes(id_processes),
+        id_operations varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        fk_machines varchar(255)  NOT NULL FOREIGN KEY REFERENCES machines(id_machines),
+        fk_processes varchar(255) NOT NULL FOREIGN KEY REFERENCES processes(id_processes),
         operation_symbol varchar(255) NOT NULL,
         setup_time int NOT NULL,
         time_per_unit int NOT NULL)`;
 
     // Schedules table
     await sql.query`create table schedules(
-        id_schedules UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-        fk_operations UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES operations(id_operations),
-        fk_orders UNIQUEIDENTIFIER FOREIGN KEY REFERENCES orders(id_orders),
+        id_schedules varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        fk_operations varchar(255) NOT NULL FOREIGN KEY REFERENCES operations(id_operations),
+        fk_orders varchar(255) FOREIGN KEY REFERENCES orders(id_orders),
         planed_start DATETIME NOT NULL,
         planed_end DATETIME NOT NULL,
         processing_time int NOT NULL,
         status varchar(255) DEFAULT 'progress')`;
 
-    // Accidents table
-    await sql.query`create table accidents(
-        id_accidents UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-        fk_operations UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES operations(id_operations),
+    // Accidents reports table
+    await sql.query`create table accidents_reports(
+        id_accidents_reports varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        fk_operations varchar(255) NOT NULL FOREIGN KEY REFERENCES operations(id_operations),
         accident_type varchar(255) NOT NULL,
-        accidents_start DATETIME NOT NULL,
-        accidents_end DATETIME NOT NULL)`;
+        accident_start DATETIME NOT NULL,
+        accident_end DATETIME NOT NULL)`;
 
     // Report table
     await sql.query`create table operations_reports(
-        id_operations_reports UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-        fk_operations UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES operations(id_operations),
+        id_operations_reports varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
+        fk_operations varchar(255) NOT NULL FOREIGN KEY REFERENCES operations(id_operations),
         real_start DATETIME NOT NULL,
         real_end DATETIME NOT NULL)`;
 
