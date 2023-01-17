@@ -28,7 +28,7 @@ export const machinesController = async (req: Request, res: Response) => {
 
 export const operationsController = async (req: Request, res: Response) => {
   const result =
-    await sql.query`select operations.id_operations, operations.operation_symbol, machines.id_machines, machines.machine_id, machines.machine_type from operations inner join machines on operations.fk_machines=machines.id_machines;`;
+    await sql.query`select operations.id_operations, operations.operation_symbol, machines.id_machines, machines.machine_id, machines.machine_type, schedules.planed_start, schedules.planed_end, schedules.status from operations inner join machines on operations.fk_machines=machines.id_machines inner join schedules on schedules.fk_operations=operations.id_operations;`;
 
   console.log(result);
 

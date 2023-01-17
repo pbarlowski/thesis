@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useNavigate,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import { store } from "./redux/store";
@@ -15,7 +11,8 @@ import OEE from "./pages/OEE";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
 import Machines from "./pages/Machines";
-import Reports from "./pages/Reports";
+import OrdersReports from "./pages/OrdersReports";
+import OperationsReports from "./pages/OperationsReports";
 import Accidents from "./pages/Accidents";
 
 import Layout from "./components/Layout";
@@ -53,12 +50,16 @@ const router = createBrowserRouter([
         element: <Machines />,
       },
       {
-        path: "/reports",
-        element: <Reports />,
+        path: "/orders-reports",
+        element: <OrdersReports />,
       },
       {
         path: "/accidents",
         element: <Accidents />,
+      },
+      {
+        path: "/operations-reports",
+        element: <OperationsReports />,
       },
     ],
   },

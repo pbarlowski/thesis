@@ -36,7 +36,12 @@ const linkList2 = [
   { text: "Products", path: "/products", icon: <CategoryIcon /> },
   { text: "Orders", path: "/orders", icon: <InventoryIcon /> },
   { text: "Machines", path: "/machines", icon: <PrecisionManufacturingIcon /> },
-  { text: "Reports", path: "/reports", icon: <SummarizeIcon /> },
+  { text: "Orders Reports", path: "/orders-reports", icon: <SummarizeIcon /> },
+  {
+    text: "Operations Reports",
+    path: "/operations-reports",
+    icon: <SummarizeIcon />,
+  },
   { text: "Accidents", path: "/accidents", icon: <ReportProblemIcon /> },
 ];
 
