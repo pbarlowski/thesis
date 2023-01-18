@@ -7,17 +7,6 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
-const Container = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-`;
-
-const Graph = styled.div<{ color: string }>`
-  background-color: ${(props) => props.color};
-  flex: 1;
-`;
-
 const ModalContainer = styled.div`
   display: flex;
   position: absolute;
@@ -33,61 +22,91 @@ const ModalContainer = styled.div`
 `;
 
 const OrdersReports = () => {
-  const [data, setData] = useState();
-  const [operationID, setOperationId] = useState();
+  const [operationsRows, setOperationsRows] = useState([]);
+  const [operationsReportsRows, setOperationsReportsRows] = useState([]);
+  const [operationId, setOperationId] = useState();
+
   const [timeStart, setTimeStart] = useState(null);
   const [timeEnd, setTimeEnd] = useState(null);
 
+  const operationsColumns = [
+    { key: "number_number", name: "Number", width: "max-content" },
+    { key: "id_operation_string", name: "Operation ID" },
+    { key: "operation_symbol", name: "Operation Symbol" },
+    { key: "planed_start_time", name: "Planed Start" },
+    { key: "planed_end_time", name: "Planed End" },
+    { key: "status_string", name: "Status" },
+    {
+      key: "report_string",
+      name: "Report",
+      formatter(props: any) {
+        return (
+          <Button
+            onClick={() => setOperationId(props.row["id_operation_string"])}
+          >
+            {"Report"}
+          </Button>
+        );
+      },
+    },
+  ];
+
+  const operationsReportsColumns = [
+    { key: "number_number", name: "Number", width: "max-content" },
+    { key: "id_operation_string", name: "Operation ID" },
+    { key: "real_start_time", name: "Real Start" },
+    { key: "real_end_time", name: "Real End" },
+  ];
+
   useEffect(() => {
     (async () => {
-      const json = await fetch("http://127.0.0.1:3001/api/operations", {
-        mode: "cors",
-      });
-      const { data } = await json.json();
+      const operationsResult = await fetch(
+        "http://127.0.0.1:3001/api/operations",
+        {
+          mode: "cors",
+        }
+      );
+      const { data: operationsData } = await operationsResult.json();
 
-      const rows = data.map((row: any) => ({
-        id_operation_string: row["id_operations"],
-        operation_symbol: row["operation_symbol"],
-        planed_start_time: row["planed_start"],
-        planed_end_time: row["planed_end"],
-        status_string: row["status"],
-      }));
+      const operationsReportsResult = await fetch(
+        "http://127.0.0.1:3001/api/operations-reports",
+        {
+          mode: "cors",
+        }
+      );
+      const { data: operationsReportsData } =
+        await operationsReportsResult.json();
 
-      const dataToSet = {
-        rows,
-        columns: [
-          { key: "id_operation_string", name: "Operation ID" },
-          { key: "operation_symbol", name: "Operation Symbol" },
-          { key: "planed_start_time", name: "Planed Start" },
-          { key: "planed_end_time", name: "Planed End" },
-          { key: "status_string", name: "Status" },
+      const operationsRowsToSet = operationsData.map(
+        (row: any, index: number) => ({
+          number_number: index + 1,
+          id_operation_string: row["id_operations"],
+          operation_symbol: row["operation_symbol"],
+          planed_start_time: new Date(row["planed_start"]).toLocaleString(),
+          planed_end_time: new Date(row["planed_end"]).toLocaleString(),
+          status_string: row["status"],
+        })
+      );
 
-          {
-            key: "report_string",
-            name: "Report",
-            formatter(props: any) {
-              return (
-                <Button
-                  onClick={() =>
-                    setOperationId(props.row["id_operation_string"])
-                  }
-                >
-                  {"Report"}
-                </Button>
-              );
-            },
-          },
-        ],
-      };
+      const operationsReportsToSet = operationsReportsData.map(
+        (row: any, index: number) => ({
+          number_number: index + 1,
+          id_operation_string: row["id_operations_reports"],
+          real_start_time: new Date(row["real_start"]).toLocaleString(),
+          real_end_time: new Date(row["real_end"]).toLocaleString(),
+        })
+      );
 
       // @ts-ignore
-      setData(dataToSet);
+      setOperationsRows(operationsRowsToSet);
+      // @ts-ignore
+      setOperationsReportsRows(operationsReportsToSet);
     })();
-  }, []);
+  }, [operationId]);
 
   const onSendPress = async () => {
     const body = JSON.stringify({
-      id_operations: operationID,
+      id_operations: operationId,
       // @ts-ignore
       real_start: timeStart.unix() * 1000,
       // @ts-ignore
@@ -114,7 +133,7 @@ const OrdersReports = () => {
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterMoment}>
-        <Modal open={!!operationID} onClose={() => setOperationId(undefined)}>
+        <Modal open={!!operationId} onClose={() => setOperationId(undefined)}>
           <ModalContainer>
             <Stack spacing={3}>
               <DateTimePicker
@@ -142,13 +161,8 @@ const OrdersReports = () => {
           </ModalContainer>
         </Modal>
       </LocalizationProvider>
-      <Container>
-        <Graph color="#00000020" />
-        <Graph color="#00000030" />
-        <Graph color="#00000040" />
-        <Graph color="#00000050" />
-      </Container>
-      {data ? <Table data={data} /> : null}
+      <Table columns={operationsReportsColumns} rows={operationsReportsRows} />
+      <Table columns={operationsColumns} rows={operationsRows} />
     </>
   );
 };

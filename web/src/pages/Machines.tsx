@@ -14,31 +14,29 @@ const Graph = styled.div<{ color: string }>`
   flex: 1;
 `;
 const Machines = () => {
-  const [data, setData] = useState();
+  const [rows, setRows] = useState([]);
+
+  const columns = [
+    { key: "number_number", name: "Number", width: "max-content" },
+    { key: "machine_id_string", name: "Machine ID" },
+    { key: "machine_type_string", name: "Machine type" },
+  ];
 
   useEffect(() => {
     (async () => {
-      const json = await fetch("http://127.0.0.1:3001/api/machines", {
+      const result = await fetch("http://127.0.0.1:3001/api/machines", {
         mode: "cors",
       });
-      const { data } = await json.json();
+      const { data } = await result.json();
 
-      const rows = data.map((row: any) => ({
+      const rows = data.map((row: any, index: number) => ({
+        number_number: index + 1,
         machine_id_string: row["machine_id"],
         machine_type_string: row["machine_type"],
       }));
 
-      const dataToSet = {
-        rows,
-        columns: [
-          { key: "machine_id_string", name: "Machine ID" },
-          { key: "machine_type_string", name: "Machine type" },
-        ],
-      };
-
-      console.log(dataToSet);
       // @ts-ignore
-      setData(dataToSet);
+      setRows(rows);
     })();
   }, []);
 
@@ -50,7 +48,7 @@ const Machines = () => {
         <Graph color="#00000040" />
         <Graph color="#00000050" />
       </Container>
-      {data ? <Table data={data} /> : null}
+      <Table columns={columns} rows={rows} />
     </>
   );
 };

@@ -6,17 +6,6 @@ import { Button, Modal, TextField, Stack } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-const Container = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-`;
-
-const Graph = styled.div<{ color: string }>`
-  background-color: ${(props) => props.color};
-  flex: 1;
-`;
-
 const ModalContainer = styled.div`
   display: flex;
   position: absolute;
@@ -32,53 +21,78 @@ const ModalContainer = styled.div`
 `;
 
 const OrdersReports = () => {
-  const [data, setData] = useState();
-  const [orderID, setOrderId] = useState();
+  const [ordersRows, setOrdersRows] = useState([]);
+  const [ordersReportRows, setOrdersReportsRows] = useState([]);
+  const [orderId, setOrderId] = useState();
+
   const [valid, setValid] = useState("");
   const [eligible, setEligible] = useState("");
   const [typeError, setTypeError] = useState(false);
 
+  const ordersColumns = [
+    { key: "number_number", name: "Number", width: "max-content" },
+    { key: "id_orders_report_string", name: "Order ID" },
+    { key: "order_amount_number", name: "Order Amount" },
+    { key: "status_string", name: "Status" },
+    {
+      key: "report_string",
+      name: "Report",
+      formatter(props: any) {
+        return (
+          <Button
+            onClick={() => setOrderId(props.row["id_orders_report_string"])}
+          >
+            {"Report"}
+          </Button>
+        );
+      },
+    },
+  ];
+
+  const ordersReportsColumns = [
+    { key: "number_number", name: "Number", width: "max-content" },
+    { key: "id_orders_string", name: "Order ID" },
+    { key: "products_valid_number", name: "Product Valid" },
+    { key: "products_eligible_number", name: "Product Eligible" },
+  ];
+
   useEffect(() => {
     (async () => {
-      const json = await fetch("http://127.0.0.1:3001/api/orders", {
+      const ordersResult = await fetch("http://127.0.0.1:3001/api/orders", {
         mode: "cors",
       });
-      const { data } = await json.json();
+      const { data: ordersData } = await ordersResult.json();
 
-      const rows = data.map((row: any) => ({
+      const ordersReportResult = await fetch(
+        "http://127.0.0.1:3001/api/orders-reports",
+        {
+          mode: "cors",
+        }
+      );
+      const { data: ordersReportData } = await ordersReportResult.json();
+
+      const ordersRowsToSet = ordersData.map((row: any, index: number) => ({
+        number_number: index + 1,
         id_orders_report_string: row["id_orders"],
         order_amount_number: row["order_amount"],
         status_string: row["status"],
       }));
 
-      const dataToSet = {
-        rows,
-        columns: [
-          { key: "id_orders_report_string", name: "Order ID" },
-          { key: "order_amount_number", name: "Order Amount" },
-          { key: "status_string", name: "Status" },
-          {
-            key: "report_string",
-            name: "Report",
-            formatter(props: any) {
-              return (
-                <Button
-                  onClick={() =>
-                    setOrderId(props.row["id_orders_report_string"])
-                  }
-                >
-                  {"Report"}
-                </Button>
-              );
-            },
-          },
-        ],
-      };
+      const ordersReportsRowsToSet = ordersReportData.map(
+        (row: any, index: number) => ({
+          number_number: index + 1,
+          id_orders_string: row["id_orders_reports"],
+          products_valid_number: row["products_valid"],
+          products_eligible_number: row["products_eligible"],
+        })
+      );
 
       // @ts-ignore
-      setData(dataToSet);
+      setOrdersRows(ordersRowsToSet);
+      // @ts-ignore
+      setOrdersReportsRows(ordersReportsRowsToSet);
     })();
-  }, []);
+  }, [orderId]);
 
   const onValidChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValid(event.target.value);
@@ -92,12 +106,10 @@ const OrdersReports = () => {
       return setTypeError(true);
 
     const body = JSON.stringify({
-      id_orders: orderID,
+      id_orders: orderId,
       products_valid: parseInt(valid, 10),
       products_eligible: parseInt(eligible, 10),
     });
-
-    console.log(body);
 
     await fetch("http://127.0.0.1:3001/api/orders-reports", {
       method: "POST",
@@ -117,7 +129,7 @@ const OrdersReports = () => {
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterMoment}>
-        <Modal open={!!orderID} onClose={() => setOrderId(undefined)}>
+        <Modal open={!!orderId} onClose={() => setOrderId(undefined)}>
           <ModalContainer>
             <Stack spacing={3}>
               <TextField
@@ -143,13 +155,8 @@ const OrdersReports = () => {
           </ModalContainer>
         </Modal>
       </LocalizationProvider>
-      <Container>
-        <Graph color="#00000020" />
-        <Graph color="#00000030" />
-        <Graph color="#00000040" />
-        <Graph color="#00000050" />
-      </Container>
-      {data ? <Table data={data} /> : null}
+      <Table columns={ordersReportsColumns} rows={ordersReportRows} />
+      <Table columns={ordersColumns} rows={ordersRows} />
     </>
   );
 };

@@ -35,6 +35,40 @@ export const operationsController = async (req: Request, res: Response) => {
   res.json({ data: result.recordset });
 };
 
+export const operationsReportsControllerGet = async (
+  req: Request,
+  res: Response
+) => {
+  const result = await sql.query`select * from operations_reports;`;
+
+  console.log(result);
+
+  res.json({ data: result.recordset });
+};
+
+export const ordersReportsControllerGet = async (
+  req: Request,
+  res: Response
+) => {
+  const result = await sql.query`select * from orders_reports;`;
+
+  console.log(result);
+
+  res.json({ data: result.recordset });
+};
+
+export const accidentsReportsControllerGet = async (
+  req: Request,
+  res: Response
+) => {
+  const result = await sql.query`select * from accidents_reports;`;
+
+  console.log(result);
+
+  res.json({ data: result.recordset });
+};
+
+// Controllers Insert
 export const operationsReportsController = async (
   req: Request,
   res: Response

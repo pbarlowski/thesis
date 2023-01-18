@@ -48,6 +48,7 @@ const linkList2 = [
 const MainContainer = styled.div`
   display: flex;
   height: 100vh;
+  overflow: hidden;
 `;
 
 const OutletContainer = styled.main`

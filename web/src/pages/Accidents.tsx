@@ -7,17 +7,6 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
-const Container = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-`;
-
-const Graph = styled.div<{ color: string }>`
-  background-color: ${(props) => props.color};
-  flex: 1;
-`;
-
 const ModalContainer = styled.div`
   display: flex;
   position: absolute;
@@ -33,57 +22,93 @@ const ModalContainer = styled.div`
 `;
 
 const Accidents = () => {
-  const [data, setData] = useState();
+  const [operationsRows, setOperationsRows] = useState([]);
+  const [accidentsRows, setAccidentsRows] = useState([]);
   const [operationId, setOperationId] = useState();
+
   const [type, setType] = useState("");
-  const [typeError, setTypeError] = useState(false);
   const [timeStart, setTimeStart] = useState(null);
+  const [typeError, setTypeError] = useState(false);
   const [timeEnd, setTimeEnd] = useState(null);
+
+  const operationsColumns = [
+    { key: "number_number", name: "Number", width: "max-content" },
+    { key: "id_operations_string", name: "Operation ID" },
+    { key: "operation_symbol_string", name: "Operation Symbol" },
+    { key: "machine_id_string", name: "Machine ID" },
+    { key: "machine_type_string", name: "Machine Type" },
+    {
+      key: "report_string",
+      name: "Report",
+      formatter(props: any) {
+        return (
+          <Button
+            onClick={() => setOperationId(props.row["id_operations_string"])}
+          >
+            {"Report"}
+          </Button>
+        );
+      },
+    },
+  ];
+
+  const accidentsColumns = [
+    { key: "number_number", name: "Number", width: "max-content" },
+    { key: "id_accidents_string", name: "Order ID" },
+    { key: "accident_type_string", name: "Type" },
+    { key: "accident_start_string", name: "Accident Start" },
+    { key: "accident_end_string", name: "Accident End" },
+  ];
 
   useEffect(() => {
     (async () => {
-      const json = await fetch("http://127.0.0.1:3001/api/operations", {
-        mode: "cors",
-      });
-      const { data } = await json.json();
+      const operationsResult = await fetch(
+        "http://127.0.0.1:3001/api/operations",
+        {
+          mode: "cors",
+        }
+      );
 
-      const rows = data.map((row: any) => ({
-        id_operations_string: row["id_operations"],
-        operation_symbol_string: row["operation_symbol"],
-        machine_id_string: row["machine_id"],
-        machine_type_string: row["machine_type"],
-        report_string: row["id_operations"],
-      }));
+      const accidentsResult = await fetch(
+        "http://127.0.0.1:3001/api/accidents-reports",
+        {
+          mode: "cors",
+        }
+      );
 
-      const dataToSet = {
-        rows,
-        columns: [
-          { key: "id_operations_string", name: "Operation ID" },
-          { key: "operation_symbol_string", name: "Operation Symbol" },
-          { key: "machine_id_string", name: "Machine ID" },
-          { key: "machine_type_string", name: "Machine Type" },
-          {
-            key: "report_string",
-            name: "Report",
-            formatter(props: any) {
-              return (
-                <Button
-                  onClick={() =>
-                    setOperationId(props.row["id_operations_string"])
-                  }
-                >
-                  {"Report"}
-                </Button>
-              );
-            },
-          },
-        ],
-      };
+      const { data: operationsData } = await operationsResult.json();
+
+      const { data: accidentsData } = await accidentsResult.json();
+
+      const operationsRowsToSet = operationsData.map(
+        (row: any, index: number) => ({
+          number_number: index + 1,
+          id_operations_string: row["id_operations"],
+          operation_symbol_string: row["operation_symbol"],
+          machine_id_string: row["machine_id"],
+          machine_type_string: row["machine_type"],
+          report_string: row["id_operations"],
+        })
+      );
+
+      const accidentsRowsToSet = accidentsData.map(
+        (row: any, index: number) => ({
+          number_number: index + 1,
+          id_accidents_string: row["id_accidents_reports"],
+          accident_type_string: row["accident_type"],
+          accident_start_string: new Date(
+            row["accident_start"]
+          ).toLocaleString(),
+          accident_end_string: new Date(row["accident_end"]).toLocaleString(),
+        })
+      );
 
       // @ts-ignore
-      setData(dataToSet);
+      setOperationsRows(operationsRowsToSet);
+      // @ts-ignore
+      setAccidentsRows(accidentsRowsToSet);
     })();
-  }, []);
+  }, [operationId]);
 
   const onTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (typeError) setTypeError(false);
@@ -159,13 +184,8 @@ const Accidents = () => {
           </ModalContainer>
         </Modal>
       </LocalizationProvider>
-      <Container>
-        <Graph color="#00000020" />
-        <Graph color="#00000030" />
-        <Graph color="#00000040" />
-        <Graph color="#00000050" />
-      </Container>
-      {data ? <Table data={data} /> : null}
+      <Table columns={accidentsColumns} rows={accidentsRows} />
+      <Table columns={operationsColumns} rows={operationsRows} />
     </>
   );
 };

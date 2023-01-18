@@ -11,18 +11,20 @@ const DataGridContainer = styled.div`
 type Comparator = (a: any, b: any) => number;
 
 type TableProps = {
-  data: {
-    columns: Object[];
-    rows: Object[];
-  };
+  columns: Object[];
+  rows: Object[];
 };
 
-const Table: React.FC<TableProps> = ({ data }) => {
-  const [rows, setRows] = useState(data.rows);
+const Table: React.FC<TableProps> = ({ columns, rows: rowsProps }) => {
+  const [rows, setRows] = useState(rowsProps);
   const [sortColumns, setSortColumns] = useState<readonly SortColumn[]>([]);
   const onSortColumnsChange = useCallback((sortColumns: SortColumn[]) => {
     setSortColumns(sortColumns.slice(-1));
   }, []);
+
+  useEffect(() => {
+    setRows(rowsProps);
+  }, [rowsProps]);
 
   function getComparator(sortColumn: string): Comparator {
     if (sortColumn.search("string") >= 0)
@@ -56,7 +58,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
           sortable: true,
         }}
         // @ts-ignore
-        columns={data.columns}
+        columns={columns}
         rows={sortedRows}
         onRowsChange={setRows}
         sortColumns={sortColumns}
