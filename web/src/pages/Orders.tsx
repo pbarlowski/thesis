@@ -23,7 +23,7 @@ const Orders = () => {
     { key: "order_amount_number", name: "Amount" },
     { key: "product_id_string", name: "Product ID" },
     { key: "product_type_string", name: "Product Type" },
-    { key: "status_string", name: "Status" },
+    { key: "order_status_string", name: "Status" },
   ];
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Orders = () => {
         order_amount_number: row["order_amount"],
         product_id_string: row["product_id"],
         product_type_string: row["product_type"],
-        status_string: row["status"],
+        order_status_string: row["status"],
       }));
 
       // @ts-ignore

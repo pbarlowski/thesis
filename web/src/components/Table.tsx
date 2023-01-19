@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import "react-data-grid/lib/styles.css";
+import moment from "moment";
 import DataGrid, { SortColumn } from "react-data-grid";
 import styled from "styled-components";
 
@@ -31,9 +32,18 @@ const Table: React.FC<TableProps> = ({ columns, rows: rowsProps }) => {
       return (a: any, b: any) => {
         return a[sortColumn].localeCompare(b[sortColumn]);
       };
-    return (a: any, b: any) => {
-      return a[sortColumn] - b[sortColumn];
-    };
+    if (sortColumn.search("number") >= 0)
+      return (a: any, b: any) => {
+        return a[sortColumn] - b[sortColumn];
+      };
+    if (sortColumn.search("time") >= 0)
+      return (a: any, b: any) => {
+        return (
+          moment(a[sortColumn], "D/MM/YY H:mm").unix() -
+          moment(b[sortColumn], "D/MM/YY H:mm").unix()
+        );
+      };
+    return (a: any, b: any) => 0;
   }
 
   const sortedRows = useMemo(() => {

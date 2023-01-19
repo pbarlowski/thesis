@@ -47,7 +47,7 @@ const configDb = async () => {
         id_orders varchar(255) NOT NULL PRIMARY KEY DEFAULT NEWID(),
         fk_products varchar(255) FOREIGN KEY REFERENCES products(id_products),
         order_amount int NOT NULL,
-        status varchar(255) DEFAULT 'progress')`;
+        order_status varchar(255) DEFAULT 'progress')`;
 
     // Products table
     await sql.query`create table orders_reports(
@@ -73,7 +73,7 @@ const configDb = async () => {
         planed_start DATETIME NOT NULL,
         planed_end DATETIME NOT NULL,
         processing_time int NOT NULL,
-        status varchar(255) DEFAULT 'progress')`;
+        schedule_status varchar(255) DEFAULT 'progress')`;
 
     // Accidents reports table
     await sql.query`create table accidents_reports(

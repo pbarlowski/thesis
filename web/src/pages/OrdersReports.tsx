@@ -33,13 +33,18 @@ const OrdersReports = () => {
     { key: "number_number", name: "Number", width: "max-content" },
     { key: "id_orders_report_string", name: "Order ID" },
     { key: "order_amount_number", name: "Order Amount" },
-    { key: "status_string", name: "Status" },
+    { key: "order_status_string", name: "Order Status" },
+    { key: "schedule_status_string", name: "Schedule Status" },
     {
       key: "report_string",
       name: "Report",
       formatter(props: any) {
         return (
           <Button
+            disabled={
+              props.row["schedule_status_string"] === "progress" ||
+              props.row["order_status_string"] === "done"
+            }
             onClick={() => setOrderId(props.row["id_orders_report_string"])}
           >
             {"Report"}
@@ -75,7 +80,8 @@ const OrdersReports = () => {
         number_number: index + 1,
         id_orders_report_string: row["id_orders"],
         order_amount_number: row["order_amount"],
-        status_string: row["status"],
+        order_status_string: row["order_status"],
+        schedule_status_string: row["schedule_status"],
       }));
 
       const ordersReportsRowsToSet = ordersReportData.map(

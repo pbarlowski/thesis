@@ -6,6 +6,7 @@ import { Button, Modal, TextField, Stack } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import moment from "moment";
 
 const ModalContainer = styled.div`
   display: flex;
@@ -56,8 +57,9 @@ const Accidents = () => {
     { key: "number_number", name: "Number", width: "max-content" },
     { key: "id_accidents_string", name: "Order ID" },
     { key: "accident_type_string", name: "Type" },
-    { key: "accident_start_string", name: "Accident Start" },
-    { key: "accident_end_string", name: "Accident End" },
+    { key: "accident_start_time", name: "Accident Start" },
+    { key: "accident_end_time", name: "Accident End" },
+    { key: "accident_total_number", name: "Total Time (Minutes)" },
   ];
 
   useEffect(() => {
@@ -96,10 +98,14 @@ const Accidents = () => {
           number_number: index + 1,
           id_accidents_string: row["id_accidents_reports"],
           accident_type_string: row["accident_type"],
-          accident_start_string: new Date(
-            row["accident_start"]
-          ).toLocaleString(),
-          accident_end_string: new Date(row["accident_end"]).toLocaleString(),
+          accident_start_time: moment(row["accident_start"]).format(
+            "D/MM/YY H:mm"
+          ),
+          accident_end_time: moment(row["accident_end"]).format("D/MM/YY H:mm"),
+          accident_total_number:
+            (moment(row["accident_end"]).unix() -
+              moment(row["accident_start"]).unix()) /
+            60,
         })
       );
 

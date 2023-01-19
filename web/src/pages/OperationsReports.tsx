@@ -6,6 +6,7 @@ import { Button, Modal, TextField, Stack } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import moment from "moment";
 
 const ModalContainer = styled.div`
   display: flex;
@@ -35,14 +36,25 @@ const OrdersReports = () => {
     { key: "operation_symbol", name: "Operation Symbol" },
     { key: "planed_start_time", name: "Planed Start" },
     { key: "planed_end_time", name: "Planed End" },
-    { key: "status_string", name: "Status" },
+    { key: "schedule_status_string", name: "Status" },
     {
       key: "report_string",
       name: "Report",
       formatter(props: any) {
         return (
           <Button
-            onClick={() => setOperationId(props.row["id_operation_string"])}
+            disabled={props.row["schedule_status_string"] === "done"}
+            onClick={() => {
+              setTimeStart(
+                // @ts-ignore
+                moment(props.row["planed_start_time"], "D/MM/YY H:mm")
+              );
+              setTimeEnd(
+                // @ts-ignore
+                moment(props.row["planed_end_time"], "D/MM/YY H:mm")
+              );
+              setOperationId(props.row["id_operation_string"]);
+            }}
           >
             {"Report"}
           </Button>
@@ -82,18 +94,18 @@ const OrdersReports = () => {
           number_number: index + 1,
           id_operation_string: row["id_operations"],
           operation_symbol: row["operation_symbol"],
-          planed_start_time: new Date(row["planed_start"]).toLocaleString(),
-          planed_end_time: new Date(row["planed_end"]).toLocaleString(),
-          status_string: row["status"],
+          planed_start_time: moment(row["planed_start"]).format("D/MM/YY H:mm"),
+          planed_end_time: moment(row["planed_end"]).format("D/MM/YY H:mm"),
+          schedule_status_string: row["schedule_status"],
         })
       );
 
       const operationsReportsToSet = operationsReportsData.map(
         (row: any, index: number) => ({
           number_number: index + 1,
-          id_operation_string: row["id_operations_reports"],
-          real_start_time: new Date(row["real_start"]).toLocaleString(),
-          real_end_time: new Date(row["real_end"]).toLocaleString(),
+          id_operation_string: row["fk_operations"],
+          real_start_time: moment(row["real_start"]).format("D/MM/YY H:mm"),
+          real_end_time: moment(row["real_end"]).format("D/MM/YY H:mm"),
         })
       );
 
