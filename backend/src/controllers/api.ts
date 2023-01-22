@@ -20,7 +20,8 @@ export const productsController = async (req: Request, res: Response) => {
 };
 
 export const machinesController = async (req: Request, res: Response) => {
-  const result = await sql.query`select * from machines;`;
+  const result =
+    await sql.query`select * from machines order by machine_id asc;`;
 
   console.log(result);
 
@@ -138,8 +139,12 @@ export const mttrController = async (req: Request, res: Response) => {
   let totalAccidents = 0;
   let mttr = 0;
 
+  const { machine } = req.query;
+
+  if (!machine) return res.sendStatus(400);
+
   const result =
-    await sql.query`select accidents_reports.accident_start, accidents_reports.accident_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join accidents_reports on operations.id_operations=accidents_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done'`;
+    await sql.query`select accidents_reports.accident_start, accidents_reports.accident_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join accidents_reports on operations.id_operations=accidents_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done' and operations.fk_machines=${machine}`;
 
   result.recordset.forEach((accident) => {
     totalTime +=
@@ -160,11 +165,15 @@ export const mttfController = async (req: Request, res: Response) => {
 
   let totalRealTime = 0;
 
+  const { machine } = req.query;
+
+  if (!machine) return res.sendStatus(400);
+
   const accidentsResult =
-    await sql.query`select accidents_reports.accident_start, accidents_reports.accident_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join accidents_reports on operations.id_operations=accidents_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done'`;
+    await sql.query`select accidents_reports.accident_start, accidents_reports.accident_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join accidents_reports on operations.id_operations=accidents_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done' and operations.fk_machines=${machine}`;
 
   const ordersResult =
-    await sql.query`select operations_reports.real_start, operations_reports.real_end from orders inner join schedules on orders.id_orders=schedules.fk_orders inner join operations on schedules.fk_operations=operations.id_operations inner join operations_reports on operations.id_operations=operations_reports.fk_operations where orders.order_status='done'`;
+    await sql.query`select operations_reports.real_start, operations_reports.real_end from orders inner join schedules on orders.id_orders=schedules.fk_orders inner join operations on schedules.fk_operations=operations.id_operations inner join operations_reports on operations.id_operations=operations_reports.fk_operations where orders.order_status='done' and operations.fk_machines=${machine}`;
 
   accidentsResult.recordset.forEach((accident) => {
     totalAccidentTime +=
@@ -191,11 +200,15 @@ export const mtbfController = async (req: Request, res: Response) => {
 
   let totalRealTime = 0;
 
+  const { machine } = req.query;
+
+  if (!machine) return res.sendStatus(400);
+
   const accidentsResult =
-    await sql.query`select accidents_reports.accident_start, accidents_reports.accident_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join accidents_reports on operations.id_operations=accidents_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done'`;
+    await sql.query`select accidents_reports.accident_start, accidents_reports.accident_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join accidents_reports on operations.id_operations=accidents_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done' and operations.fk_machines=${machine}`;
 
   const ordersResult =
-    await sql.query`select operations_reports.real_start, operations_reports.real_end from orders inner join schedules on orders.id_orders=schedules.fk_orders inner join operations on schedules.fk_operations=operations.id_operations inner join operations_reports on operations.id_operations=operations_reports.fk_operations where orders.order_status='done'`;
+    await sql.query`select operations_reports.real_start, operations_reports.real_end from orders inner join schedules on orders.id_orders=schedules.fk_orders inner join operations on schedules.fk_operations=operations.id_operations inner join operations_reports on operations.id_operations=operations_reports.fk_operations where orders.order_status='done' and operations.fk_machines=${machine}`;
 
   accidentsResult.recordset.forEach((accident) => {
     totalAccidentTime +=
@@ -231,4 +244,97 @@ export const mtbfController = async (req: Request, res: Response) => {
   const mtbf = mttf + mttr;
 
   res.json({ data: mtbf });
+};
+
+export const availabilityController = async (req: Request, res: Response) => {
+  const { machine } = req.query;
+
+  if (!machine) return res.sendStatus(400);
+
+  // let plannedTime = 0;
+  let realTime = 0;
+  let accidentsTime = 0;
+
+  const resultTime =
+    await sql.query`select schedules.planed_start, schedules.planed_end, operations_reports.real_start, operations_reports.real_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join operations_reports on operations.id_operations=operations_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done' and operations.fk_machines=${machine}`;
+
+  const resultAccidents =
+    await sql.query`select accidents_reports.accident_start, accidents_reports.accident_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join accidents_reports on operations.id_operations=accidents_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done' and operations.fk_machines=${machine}`;
+
+  resultTime.recordset.forEach((time) => {
+    realTime +=
+      moment(time["real_end"]).unix() - moment(time["real_start"]).unix();
+
+    // plannedTime +=
+    //   moment(time["planed_end"]).unix() - moment(time["planed_start"]).unix();
+  });
+
+  resultAccidents.recordset.forEach((time) => {
+    accidentsTime +=
+      moment(time["accident_end"]).unix() -
+      moment(time["accident_start"]).unix();
+  });
+
+  const availability = (realTime - accidentsTime) / realTime;
+
+  res.json({ data: availability });
+};
+
+export const qualityController = async (req: Request, res: Response) => {
+  const { machine } = req.query;
+
+  if (!machine) return res.sendStatus(400);
+
+  let total = 0;
+  let good = 0;
+
+  const result =
+    await sql.query`select orders_reports.products_valid, orders_reports.products_eligible from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join orders on schedules.fk_orders=orders.id_orders inner join orders_reports on orders.id_orders=orders_reports.fk_orders where orders.order_status='done' and operations.fk_machines=${machine}`;
+
+  result.recordset.forEach((order) => {
+    total += order["products_valid"] + order["products_eligible"];
+    good += order["products_valid"];
+  });
+
+  const quality = good / total;
+
+  res.json({ data: quality });
+};
+
+export const performanceController = async (req: Request, res: Response) => {
+  const { machine } = req.query;
+
+  if (!machine) return res.sendStatus(400);
+
+  let realTime = 0;
+  let accidentsTime = 0;
+  let processingTime = 0;
+
+  const result =
+    await sql.query`select orders_reports.products_valid, orders_reports.products_eligible, operations.time_per_unit, orders.order_amount from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join orders on schedules.fk_orders=orders.id_orders inner join orders_reports on orders.id_orders=orders_reports.fk_orders where orders.order_status='done' and operations.fk_machines=${machine}`;
+
+  const resultTime =
+    await sql.query`select schedules.planed_start, schedules.planed_end, operations_reports.real_start, operations_reports.real_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join operations_reports on operations.id_operations=operations_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done' and operations.fk_machines=${machine}`;
+
+  const resultAccidents =
+    await sql.query`select accidents_reports.accident_start, accidents_reports.accident_end from schedules inner join operations on schedules.fk_operations=operations.id_operations inner join accidents_reports on operations.id_operations=accidents_reports.fk_operations inner join orders on orders.id_orders=schedules.fk_orders where orders.order_status='done' and operations.fk_machines=${machine}`;
+
+  resultTime.recordset.forEach((time) => {
+    realTime +=
+      moment(time["real_end"]).unix() - moment(time["real_start"]).unix();
+  });
+
+  resultAccidents.recordset.forEach((time) => {
+    accidentsTime +=
+      moment(time["accident_end"]).unix() -
+      moment(time["accident_start"]).unix();
+  });
+
+  result.recordset.forEach((item) => {
+    processingTime += item["order_amount"] * item["time_per_unit"] * 60;
+  });
+
+  const performance = processingTime / (realTime - accidentsTime);
+
+  res.json({ data: performance });
 };

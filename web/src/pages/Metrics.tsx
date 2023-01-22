@@ -15,7 +15,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   Label,
 } from "recharts";
@@ -90,13 +89,14 @@ const generateData = (mtbf: number) => {
 
 const Metrics = () => {
   const [machine, setMachine] = useState("");
+  const [machines, setMachines] = useState([]);
+
   const [data, setData] = useState({
     mttr: 0,
     mttf: 0,
     mtbf: 0,
     failureRate: "0",
     chartData: [],
-    machines: [],
   });
 
   useEffect(() => {
@@ -105,35 +105,56 @@ const Metrics = () => {
         mode: "cors",
       });
 
-      const mttrResult = await fetch("http://127.0.0.1:3001/api/mttr", {
-        mode: "cors",
-      });
+      const { data: machines } = await machinesResult.json();
 
-      const mttfResult = await fetch("http://127.0.0.1:3001/api/mttf", {
-        mode: "cors",
-      });
+      console.log(machines);
 
-      const mtbfResult = await fetch("http://127.0.0.1:3001/api/mtbf", {
-        mode: "cors",
-      });
+      setMachines(machines);
+
+      setMachine(machines[0]["id_machines"]);
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (machine.length === 0) return;
+
+      const mttrResult = await fetch(
+        `http://127.0.0.1:3001/api/mttr/?machine=${machine}`,
+        {
+          mode: "cors",
+        }
+      );
+
+      const mttfResult = await fetch(
+        `http://127.0.0.1:3001/api/mttf/?machine=${machine}`,
+        {
+          mode: "cors",
+        }
+      );
+
+      const mtbfResult = await fetch(
+        `http://127.0.0.1:3001/api/mtbf/?machine=${machine}`,
+        {
+          mode: "cors",
+        }
+      );
 
       const { data: mttr } = await mttrResult.json();
       const { data: mttf } = await mttfResult.json();
       const { data: mtbf } = await mtbfResult.json();
 
       // @ts-ignore
-      const failureRate = parseFloat(1 / mtbf).toFixed(6);
+      const failureRate = !mtbf ? 0 : parseFloat(1 / mtbf).toFixed(6);
       const chartData = generateData(mtbf);
 
-      const { data: machines } = await machinesResult.json();
-
       // @ts-ignore
-      setData({ mttr, mttf, mtbf, failureRate, chartData, machines });
+      setData({ mttr, mttf, mtbf, failureRate, chartData });
     })();
-  }, []);
+  }, [machine]);
 
   const onSelectChange = (event: SelectChangeEvent) => {
-    setMachine(event.target.value as string);
+    setMachine(event.target.value);
   };
 
   return (
@@ -149,7 +170,7 @@ const Metrics = () => {
             label="Machine"
             onChange={onSelectChange}
           >
-            {data.machines.map((machine) => (
+            {machines.map((machine) => (
               <MenuItem value={machine["id_machines"]}>
                 {machine["machine_id"]}
               </MenuItem>

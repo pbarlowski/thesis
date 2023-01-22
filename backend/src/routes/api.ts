@@ -13,6 +13,9 @@ import {
   mttrController,
   mttfController,
   mtbfController,
+  availabilityController,
+  qualityController,
+  performanceController,
 } from "../controllers/api";
 
 const apiRouter = express.Router();
@@ -28,6 +31,10 @@ apiRouter.get("/accidents-reports", accidentsReportsControllerGet);
 apiRouter.get("/mttr", mttrController);
 apiRouter.get("/mttf", mttfController);
 apiRouter.get("/mtbf", mtbfController);
+
+apiRouter.get("/availability", availabilityController);
+apiRouter.get("/quality", qualityController);
+apiRouter.get("/performance", performanceController);
 
 apiRouter.post("/operations-reports", operationsReportsController);
 apiRouter.post("/orders-reports", ordersReportsController);
