@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import Table from "../components/Table";
-import styled from "styled-components";
-
-const Container = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-`;
-
-const Graph = styled.div<{ color: string }>`
-  background-color: ${(props) => props.color};
-  flex: 1;
-`;
 
 const Orders = () => {
   const [rows, setRows] = useState([]);
@@ -39,7 +27,7 @@ const Orders = () => {
         order_amount_number: row["order_amount"],
         product_id_string: row["product_id"],
         product_type_string: row["product_type"],
-        order_status_string: row["status"],
+        order_status_string: row["order_status"],
       }));
 
       // @ts-ignore
@@ -49,12 +37,6 @@ const Orders = () => {
 
   return (
     <>
-      <Container>
-        <Graph color="#00000020" />
-        <Graph color="#00000030" />
-        <Graph color="#00000040" />
-        <Graph color="#00000050" />
-      </Container>
       <Table columns={columns} rows={rows} />
     </>
   );

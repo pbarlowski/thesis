@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Table from "../components/Table";
-import styled from "styled-components";
 
-const Container = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-`;
-
-const Graph = styled.div<{ color: string }>`
-  background-color: ${(props) => props.color};
-  flex: 1;
-`;
 const Products = () => {
   const [rows, setRows] = useState([]);
 
@@ -42,12 +31,6 @@ const Products = () => {
 
   return (
     <>
-      <Container>
-        <Graph color="#00000020" />
-        <Graph color="#00000030" />
-        <Graph color="#00000040" />
-        <Graph color="#00000050" />
-      </Container>
       <Table columns={columns} rows={rows} />
     </>
   );

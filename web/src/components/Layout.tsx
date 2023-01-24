@@ -4,7 +4,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 import {
   Avatar,
-  Box,
   Button,
   Divider,
   Drawer,
@@ -16,7 +15,6 @@ import {
   Toolbar,
 } from "@mui/material";
 
-import HomeIcon from "@mui/icons-material/Home";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import InsightsIcon from "@mui/icons-material/Insights";
 import SummarizeIcon from "@mui/icons-material/Summarize";
@@ -27,7 +25,6 @@ import CategoryIcon from "@mui/icons-material/Category";
 import styled from "styled-components";
 
 const linkList1 = [
-  { text: "Dashboard", path: "/dashboard", icon: <HomeIcon /> },
   { text: "Metrics", path: "/metrics", icon: <AnalyticsIcon /> },
   { text: "OEE", path: "/oee", icon: <InsightsIcon /> },
 ];

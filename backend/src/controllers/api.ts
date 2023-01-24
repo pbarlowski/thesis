@@ -95,9 +95,9 @@ export const ordersReportsController = async (req: Request, res: Response) => {
   const { body } = req;
 
   if (
-    !body["id_orders"] ||
-    !body["products_valid"] ||
-    !body["products_eligible"]
+    body["id_orders"] === undefined ||
+    body["products_valid"] === undefined ||
+    body["products_eligible"] === undefined
   )
     return res.sendStatus(400);
 

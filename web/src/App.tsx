@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
 import Metrics from "./pages/Metrics";
 import OEE from "./pages/OEE";
 import Products from "./pages/Products";
@@ -25,10 +24,6 @@ const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
       {
         path: "/metrics",
         element: <Metrics />,
