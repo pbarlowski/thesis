@@ -26,14 +26,14 @@ const Home = () => {
     if (login.length === 0) return setLoginError(true);
     if (password.length === 0) return setPasswordError(true);
 
-    navigate("/dashboard");
+    navigate("/products");
   };
 
   const onRegisterPress = () => {
     if (login.length === 0) return setLoginError(true);
     if (password.length === 0) return setPasswordError(true);
 
-    navigate("/dashboard");
+    navigate("/products");
   };
 
   return (

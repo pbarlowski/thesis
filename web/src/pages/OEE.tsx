@@ -167,9 +167,9 @@ const OEE = () => {
         <Metric value={data.oee} title="OEE" />
       </TopContainer>
       <BottomContainer>
+        <Metric value={data.availability} title="Availability" />
         <Metric value={data.performance} title="Performance" />
         <Metric value={data.quality} title="Quality" />
-        <Metric value={data.availability} title="Availability" />
       </BottomContainer>
     </Container>
   );

@@ -31,10 +31,9 @@ const OrdersReports = () => {
 
   const ordersColumns = [
     { key: "number_number", name: "Number", width: "max-content" },
-    { key: "id_orders_report_string", name: "Order ID" },
+    { key: "order_name_string", name: "Order Name" },
     { key: "order_amount_number", name: "Order Amount" },
     { key: "order_status_string", name: "Order Status" },
-    { key: "schedule_status_string", name: "Schedule Status" },
     {
       key: "report_string",
       name: "Report",
@@ -42,10 +41,10 @@ const OrdersReports = () => {
         return (
           <Button
             disabled={
-              props.row["schedule_status_string"] === "progress" ||
-              props.row["order_status_string"] === "done"
+              props.row["order_status_string"] !== "done" ||
+              !!props.row["id_orders_reports_string"]
             }
-            onClick={() => setOrderId(props.row["id_orders_report_string"])}
+            onClick={() => setOrderId(props.row["id_orders_string"])}
           >
             {"Report"}
           </Button>
@@ -56,7 +55,7 @@ const OrdersReports = () => {
 
   const ordersReportsColumns = [
     { key: "number_number", name: "Number", width: "max-content" },
-    { key: "id_orders_string", name: "Order ID" },
+    { key: "id_orders_reports_string", name: "Order Report ID" },
     { key: "products_valid_number", name: "Product Valid" },
     { key: "products_eligible_number", name: "Product Eligible" },
   ];
@@ -78,16 +77,17 @@ const OrdersReports = () => {
 
       const ordersRowsToSet = ordersData.map((row: any, index: number) => ({
         number_number: index + 1,
-        id_orders_report_string: row["id_orders"],
+        id_orders_reports_string: row["id_orders_reports"],
+        id_orders_string: row["id_orders"],
+        order_name_string: row["order_name"],
         order_amount_number: row["order_amount"],
         order_status_string: row["order_status"],
-        schedule_status_string: row["schedule_status"],
       }));
 
       const ordersReportsRowsToSet = ordersReportData.map(
         (row: any, index: number) => ({
           number_number: index + 1,
-          id_orders_string: row["id_orders_reports"],
+          id_orders_reports_string: row["id_orders_reports"],
           products_valid_number: row["products_valid"],
           products_eligible_number: row["products_eligible"],
         })

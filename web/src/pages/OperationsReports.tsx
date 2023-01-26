@@ -32,7 +32,7 @@ const OrdersReports = () => {
 
   const operationsColumns = [
     { key: "number_number", name: "Number", width: "max-content" },
-    { key: "id_operation_string", name: "Operation ID" },
+    { key: "order_name_string", name: "Order Name" },
     { key: "operation_symbol", name: "Operation Symbol" },
     { key: "planed_start_time", name: "Planed Start" },
     { key: "planed_end_time", name: "Planed End" },
@@ -92,6 +92,7 @@ const OrdersReports = () => {
       const operationsRowsToSet = operationsData.map(
         (row: any, index: number) => ({
           number_number: index + 1,
+          order_name_string: row["order_name"],
           id_operation_string: row["id_operations"],
           operation_symbol: row["operation_symbol"],
           planed_start_time: moment(row["planed_start"]).format("D/MM/YY H:mm"),

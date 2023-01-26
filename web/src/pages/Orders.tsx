@@ -7,7 +7,7 @@ const Orders = () => {
 
   const columns = [
     { key: "number_number", name: "Number", width: "max-content" },
-    { key: "id_orders_string", name: "Order ID" },
+    { key: "order_name_string", name: "Order Name" },
     { key: "order_amount_number", name: "Amount" },
     { key: "product_id_string", name: "Product ID" },
     { key: "product_type_string", name: "Product Type" },
@@ -23,7 +23,7 @@ const Orders = () => {
 
       const rows = data.map((row: any, index: number) => ({
         number_number: index + 1,
-        id_orders_string: row["id_orders"],
+        order_name_string: row["order_name"],
         order_amount_number: row["order_amount"],
         product_id_string: row["product_id"],
         product_type_string: row["product_type"],

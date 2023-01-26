@@ -1,7 +1,7 @@
 ﻿[
     {
         "process_id": "PROC01",
-        "process_name": "Obróbka wstępna"
+        "process_name": "Obróbka skrawaniem"
     },
     {
         "process_id": "PROC02",
@@ -14,5 +14,9 @@
     {
         "process_id": "PROC04",
         "process_name": "Obróbka wykończeniowa"
+    },
+    {
+        "process_id": "PROC05",
+        "process_name": "Obróbka wstępna"
     }
 ]
