@@ -34,7 +34,7 @@ const Accidents = () => {
 
   const operationsColumns = [
     { key: "number_number", name: "Number", width: "max-content" },
-    { key: "id_operations_string", name: "Operation ID" },
+    { key: "id_order_string", name: "Order Name" },
     { key: "operation_symbol_string", name: "Operation Symbol" },
     { key: "machine_id_string", name: "Machine ID" },
     { key: "machine_type_string", name: "Machine Type" },
@@ -44,7 +44,7 @@ const Accidents = () => {
       formatter(props: any) {
         return (
           <Button
-            onClick={() => setOperationId(props.row["id_operations_string"])}
+            onClick={() => setOperationId(props.row["id_operation_string"])}
           >
             {"Report"}
           </Button>
@@ -55,7 +55,7 @@ const Accidents = () => {
 
   const accidentsColumns = [
     { key: "number_number", name: "Number", width: "max-content" },
-    { key: "id_accidents_string", name: "Order ID" },
+    { key: "id_accidents_string", name: "Accident ID" },
     { key: "accident_type_string", name: "Type" },
     { key: "accident_start_time", name: "Accident Start" },
     { key: "accident_end_time", name: "Accident End" },
@@ -85,8 +85,9 @@ const Accidents = () => {
       const operationsRowsToSet = operationsData.map(
         (row: any, index: number) => ({
           number_number: index + 1,
-          id_operations_string: row["id_operations"],
+          id_order_string: row["order_name"],
           operation_symbol_string: row["operation_symbol"],
+          id_operation_string: row["id_operations"],
           machine_id_string: row["machine_id"],
           machine_type_string: row["machine_type"],
           report_string: row["id_operations"],

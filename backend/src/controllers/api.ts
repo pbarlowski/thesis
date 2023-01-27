@@ -12,7 +12,8 @@ export const ordersController = async (req: Request, res: Response) => {
 };
 
 export const productsController = async (req: Request, res: Response) => {
-  const result = await sql.query`select * from products;`;
+  const result =
+    await sql.query`select products.id_products, products.product_id, product_type, processes.process_id from products INNER JOIN processes on id_products=fk_products;`;
 
   console.log(result);
 

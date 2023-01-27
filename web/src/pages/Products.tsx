@@ -9,6 +9,7 @@ const Products = () => {
     { key: "number_number", name: "Number", width: "max-content" },
     { key: "product_id_string", name: "Product ID" },
     { key: "product_type_string", name: "Product type" },
+    { key: "process_id_string", name: "Process ID" },
   ];
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const Products = () => {
         number_number: index + 1,
         product_id_string: row["product_id"],
         product_type_string: row["product_type"],
+        process_id_string: row["process_id"],
       }));
 
       // @ts-ignore

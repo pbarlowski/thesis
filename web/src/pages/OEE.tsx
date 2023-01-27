@@ -1,6 +1,6 @@
 // @ts-ignore
 import React, { useEffect, useState } from "react";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import {
   Typography,
@@ -66,6 +66,11 @@ const Metric: React.FC<MetricProps> = ({ value, title }) => {
         <CircularProgressbar
           value={Math.floor(value * 100)}
           text={`${Math.floor(value * 100)}%`}
+          styles={buildStyles({
+            pathColor: "#2a922c",
+            textColor: "black",
+            trailColor: "#De4948",
+          })}
         />
       </Item>
       <Typography variant="h4" sx={{ marginTop: "16px" }}>
