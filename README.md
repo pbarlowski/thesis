@@ -10,10 +10,10 @@ The application was created for the purposes of an diploma thesis. It is used to
 ![image](https://user-images.githubusercontent.com/103599051/227055092-f168cd47-5c83-443a-a4b6-41d7a4efc52b.png)
 
 ## Technologies
-- Docekr
+- Docker
 - Microsoft SQL Server 2019
 - React.js
 - TypeScript
-- Node.js with Expres
+- Node.js with Express
 - Material UI
 - React Router
