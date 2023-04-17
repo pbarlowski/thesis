@@ -1,7 +1,7 @@
 # Application for managing production orders and post-production reports
 
 ## Description
-The application was created for the purposes of an diploma thesis. It is used to support the production process by reporting on individual stages of production. It also allows for reviewing production statistics in the form of dashboards.
+The application was created for the purposes of an diploma thesis. It is used to support the production process by reporting on individual stages of production. It also allows for reviewing production statistics in the form of dashboards.All data in the database has been artificially generated for the project purposes.
 
 ## Demo screens
 ![image](https://user-images.githubusercontent.com/103599051/227054868-173c35ac-4df0-40df-8fcf-808a73e24396.png)
